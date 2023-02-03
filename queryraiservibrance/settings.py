@@ -10,11 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+import environ
 from pathlib import Path
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
+environ.Env.read_env()
+#Email Backends
+EMAIL_BACKEND = env.str('EMAIL_BACKEND')
+EMAIL_USE_TLS = True
+EMAIL_USER_SSL = False
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env.int('EMAIL_PORT')
+DEFAULT_FROM_EMAIL = 'PR Team VIT Chennai <noreply@queryraiser.com>'
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,6 +53,7 @@ INSTALLED_APPS = [
     #Third Party Apps
     'tinymce',
     'crispy_forms',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +176,11 @@ MESSAGE_TAGS = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#Celery
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'default'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
