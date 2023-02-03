@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class = "container">
+    <h1 class = "text-center">View All Queries</h1>
+    <hr/>
+    <div class = "container py-2" style = "margin-bottom:20px;">
+        <form method = "GET">
+            <div class = "row">
+                <div class = "col">
+                    {{Queries.form.slug|as_crispy_field}}
+                </div>
+                <div class = "col">
+                    {{Queries.form.date_of_creation|as_crispy_field}}
+                </div>
+                <div class = "col">
+                    {{Queries.form.status|as_crispy_field}}
+                </div>
+            </div>
+            <div class = "d-inline-block py-2" style = "margin-bottom:15px;">
+                <button type = "submit" class = "btn btn-primary"><i class="fa-solid fa-filter"></i> Filter</button>
+            </div>
+        </form>
+    </div>
+    <div class = "row" style = "margin-bottom:10px;">
+        <div class = "col">
+            <span class = "badge bg-info">Pending for Approval : {{Pending_Count}}</span>
+        </div>
+        <div class = "col">
+            <span class = "badge bg-success">Resolved : {{Resolved_Count}}</span>
+        </div>
+        <div class = "col">
+            <span class = "badge bg-danger">Rejected : {{Rejected_Count}}</span>
+        </div>
+    </div>
+    <div class = "container">
+        <h1 class = "text-center" >Queries</h1>
+        <hr/>
+        <ul class="list-group">
+            {% if Queries.qs %}
+            {% for query in Queries.qs %}
+            {% if query.status == "Processing Query" %}
+                <a href = "{% url 'query_detail_view' query.slug query.id  %}" class="list-group-item list-group-item-action list-group-item-info">
+                    {{query.title}} - #{{query.slug}}
+                </a>
+            {% elif query.status == "Rejected" %}
+                <a href = "{% url 'query_detail_view' query.slug query.id %}" class="list-group-item list-group-item-action list-group-item-danger">
+                    {{query.title}} - #{{query.slug}}
+                </a>
+            {% else %}
+                <a href = "{% url 'query_detail_view' query.slug query.id %}" class="list-group-item list-group-item-action list-group-item-success">
+                    {{query.title}} - #{{query.slug}}
+                </a>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+                <h1 class = "text-center">No Results Found !!!</h1>
+            {% endif %}
+        </ul>
+    </div>
+    <div class = "d-inline-block py-2" style = "margin-top:20px;margin-bottom:10px;">
+        <a href = "{% url 'create_query' %}" class = "btn btn-primary" data-bss-hover-animate="pulse" style = "margin-bottom:10px;margin-left:10px;"><i class="fa-solid fa-plus"></i> Add a Query</a>
+        <a href = "{% url 'home' %}" class = "btn btn-primary" data-bss-hover-animate="pulse" style = "margin-bottom:10px;margin-left:10px;"><i class="fa-solid fa-house-user"></i> Dashboard</a>
+    </div>
+</div>
+{% endblock %}

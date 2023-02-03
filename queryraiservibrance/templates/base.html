@@ -18,6 +18,23 @@
             >QueryRaiser</a
           >
         </div>
+        <button
+              data-bs-toggle="collapse"
+              class="navbar-toggler"
+              data-bs-target="#navcol-1"
+            >
+              <span class="visually-hidden">Toggle navigation</span
+              ><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+              <ul class="navbar-nav ms-auto">
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                
+                
+              <a class = "nav-link active" data-bss-hover-animate="pulse" href="{% url 'logout' %}">Logout</a>
+            </ul>
+            </div>
       </nav>
     </header>
     <div class = "container">

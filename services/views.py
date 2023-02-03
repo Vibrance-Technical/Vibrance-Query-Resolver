@@ -1,4 +1,5 @@
 from .forms import *
+from .filters import *
 from django.contrib import messages
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,6 +13,8 @@ class QueryDetailView(LoginRequiredMixin,generic.DetailView):
     fields = ['__all__']
 # Function Based Views
 def home(request):
+    if request.user.is_authenticated():
+        return redirect("view_all_queries")
     search_reference = SearchReferenceForm(request.GET)
     queries = None
     if search_reference.is_valid():
@@ -35,12 +38,20 @@ def create_query(request):
         return render(request,"services/create_query.html",{"form":QueryCreateForm()})
 
 @login_required
+def view_all_queries(request):
+    queries = QueryFilter(request.GET,queryset = Query.objects.all().order_by('-date_of_creation'))
+    pending_count = Query.objects.filter(status = "Processing Query").count()
+    Resolved_count = Query.objects.filter(status = "Resolved").count()
+    rejected_count = Query.objects.filter(status = "Rejected").count()
+    return render(request,'services/view_all_queries.html',{"Queries":queries,"Pending_Count":pending_count,"Resolved_Count":Resolved_count,"Rejected_Count":rejected_count,})
+
+@login_required
 def approve_query(request,pk,slug):
     query = Query.objects.get(id = pk,slug = slug)
     if request.method == "POST":
-        query.status = "Approved"
+        query.status = "Resolved"
         query.save()
-        messages.success(request,"Approved Query successfully")
+        messages.success(request,"Resolved Query successfully")
         # approval_mail(query)
         return redirect("home")
     else:

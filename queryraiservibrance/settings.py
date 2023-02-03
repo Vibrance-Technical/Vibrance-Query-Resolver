@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'tinymce',
     'crispy_forms',
     'django_celery_results',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -158,7 +159,7 @@ PHONENUMBER_DEFAULT_REGION = "IN"
 PHONENUMBER_DEFAULT_FORMAT = "INTERNATIONAL"
 #Authentication
 LOGIN_URL = "home"
-LOGIN_REDIRECT_URL = "portal"
+LOGIN_REDIRECT_URL = "view_all_queries"
 LOGOUT_URL = "logout"
 LOGOUT_REDIRECT_URL = "home"
 #Crispy Forms
