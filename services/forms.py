@@ -6,3 +6,8 @@ class SearchReferenceForm(forms.ModelForm):
     class Meta:
         model = Query
         fields = ['slug']
+
+class QueryCreateForm(forms.ModelForm):
+    class Meta:
+        model = Query
+        fields = ["user_name","registration_id","college_name","title","description","transaction_id","screenshot"]
