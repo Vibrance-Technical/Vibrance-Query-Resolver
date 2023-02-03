@@ -11,6 +11,7 @@ class Query(models.Model):
     college_name = models.CharField(max_length = 400)
     title = models.CharField(max_length = 30)
     description = HTMLField()
+    email = models.EmailField(blank = True)
     transaction_id = models.CharField(max_length = 500)
     status = models.CharField(max_length = 100,choices = STATUS_CHOICES,blank = True)
     screenshot = models.ImageField(upload_to = 'references/')
