@@ -5,6 +5,7 @@
     <h1 class = "text-center">Raise Query</h1>
     <hr/>
     <form method = "POST" enctype="multipart/form-data">
+        
         {% csrf_token %}
         {{form.media}}
         {{form|crispy}}

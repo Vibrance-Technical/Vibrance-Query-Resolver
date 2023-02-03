@@ -6,7 +6,9 @@ def home(request):
     search_reference = SearchReferenceForm(request.GET)
     queries = None
     if search_reference.is_valid():
-        queries = Query.objects.filter(slug = search_reference)
+        search_term = str(request.GET.get("slug"))
+        print(search_term)
+        queries = Query.objects.filter(slug = search_term)
     return render(request,"services/home.html",{"Queries":queries,"search_form":SearchReferenceForm()})
 
 def create_query(request):

@@ -18,7 +18,7 @@ class Query(models.Model):
     slug = models.SlugField(blank = True)
     def save(self,*args,**kwargs):
         if not self.slug:
-            self.slug = shortuuid.ShortUUID()
+            self.slug = shortuuid.ShortUUID().random(length=10)
         super(Query, self).save(*args,**kwargs)
     def __str__(self):
         return self.title+"-"+self.user_name+"-"+self.slug
