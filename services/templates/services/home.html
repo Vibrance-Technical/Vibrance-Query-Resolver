@@ -2,8 +2,13 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <div class = "container">
+    <h1 class = "text-center">View Queries</h1>
+    <hr/>
     <form method = "GET">
         {{search_form|crispy}}
+        <div class = "d-inline-block">
+            <button type = "submit" class = "btn btn-primary">Search</button>
+        </div>
     </form>
 </div>
 {% endblock %}
