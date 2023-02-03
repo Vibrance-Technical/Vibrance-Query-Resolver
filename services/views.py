@@ -13,7 +13,7 @@ class QueryDetailView(LoginRequiredMixin,generic.DetailView):
     fields = ['__all__']
 # Function Based Views
 def home(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return redirect("view_all_queries")
     search_reference = SearchReferenceForm(request.GET)
     queries = None
