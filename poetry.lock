@@ -67,6 +67,26 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "pillow"
+version = "9.4.0"
+description = "Python Imaging Library (Fork)"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-issues (>=3.0.1)", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+
+[[package]]
+name = "shortuuid"
+version = "1.0.11"
+description = "A generator library for concise, unambiguous and URL-safe UUIDs."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "sqlparse"
 version = "0.4.3"
 description = "A non-validating SQL parser."
@@ -85,7 +105,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "bc4aba646645b349cef3e2b7873d5c2237ed2bb8d695612c7d319d78faed13a2"
+content-hash = "14aeaf41935bfe87c0c763c7d72aae3aedfda44700d4053da2ca925e5118fac5"
 
 [metadata.files]
 asgiref = []
@@ -97,5 +117,7 @@ django-crispy-forms = [
 django-phonenumber-field = []
 django-tinymce = []
 phonenumbers = []
+pillow = []
+shortuuid = []
 sqlparse = []
 tzdata = []
