@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
-
+from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'services',
+    #Third Party Apps
+    'tinymce',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -115,7 +120,45 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS=[
+        os.path.join(BASE_DIR,'expensemanager/static')
+]
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL  = '/media/'
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
+#Tinymce
+TINYMCE_DEFAULT_CONFIG = {
+    "themes":"silver",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autoresize autolink lists link image charmap print preview anchor searchreplace visualblocks code "
+    "fullscreen insertdatetime media table paste code help wordcount emoticons spellchecker",
+    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+    "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment code",
+    "custom_undo_redo_levels": 10  # To force a specific language instead of the Django current language.
+}
+TINYMCE_SPELLCHECKER = True
+#PhoneNumber
+PHONENUMBER_DEFAULT_REGION = "IN"
+PHONENUMBER_DEFAULT_FORMAT = "INTERNATIONAL"
+#Authentication
+LOGIN_URL = "home"
+LOGIN_REDIRECT_URL = "portal"
+LOGOUT_URL = "logout"
+LOGOUT_REDIRECT_URL = "home"
+#Crispy Forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#Authentication backends
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+ }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

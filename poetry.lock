@@ -27,9 +27,41 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-crispy-forms"
+version = "1.14.0"
+description = "Best way to have Django DRY forms"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
+name = "django-phonenumber-field"
+version = "7.0.2"
+description = "An international phone number field for django models."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Django = ">=3.2"
+phonenumbers = {version = ">=7.0.2", optional = true, markers = "extra == \"phonenumbers\""}
+
+[package.extras]
+phonenumbers = ["phonenumbers (>=7.0.2)"]
+phonenumberslite = ["phonenumberslite (>=7.0.2)"]
+
+[[package]]
 name = "django-tinymce"
 version = "3.5.0"
 description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "phonenumbers"
+version = "8.13.5"
+description = "Python version of Google's common library for parsing, formatting, storing and validating international phone numbers."
 category = "main"
 optional = false
 python-versions = "*"
@@ -53,11 +85,17 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "f2f37cb339c93461d7f6142db4aca2f736d1c43948269f11d5105fdc221467c2"
+content-hash = "bc4aba646645b349cef3e2b7873d5c2237ed2bb8d695612c7d319d78faed13a2"
 
 [metadata.files]
 asgiref = []
 django = []
+django-crispy-forms = [
+    {file = "django-crispy-forms-1.14.0.tar.gz", hash = "sha256:35887b8851a931374dd697207a8f56c57a9c5cb9dbf0b9fa54314da5666cea5b"},
+    {file = "django_crispy_forms-1.14.0-py3-none-any.whl", hash = "sha256:bc4d2037f6de602d39c0bc452ac3029d1f5d65e88458872cc4dbc01c3a400604"},
+]
+django-phonenumber-field = []
 django-tinymce = []
+phonenumbers = []
 sqlparse = []
 tzdata = []
