@@ -13,6 +13,7 @@ class Query(models.Model):
     description = HTMLField()
     transaction_id = models.CharField(max_length = 500)
     screenshot = models.ImageField(upload_to = 'references/')
+    date_of_creation = models.DateTimeField(auto_now_add = True)
     slug = models.SlugField(blank = True)
     def save(self,*args,**kwargs):
         if not self.slug:

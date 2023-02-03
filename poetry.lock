@@ -35,6 +35,17 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "django-filter"
+version = "22.1"
+description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "django-phonenumber-field"
 version = "7.0.2"
 description = "An international phone number field for django models."
@@ -105,7 +116,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "14aeaf41935bfe87c0c763c7d72aae3aedfda44700d4053da2ca925e5118fac5"
+content-hash = "f7e97ab16952b980d3c2a9b77cc4974870da6c114fec968d950180e402d04663"
 
 [metadata.files]
 asgiref = []
@@ -114,6 +125,7 @@ django-crispy-forms = [
     {file = "django-crispy-forms-1.14.0.tar.gz", hash = "sha256:35887b8851a931374dd697207a8f56c57a9c5cb9dbf0b9fa54314da5666cea5b"},
     {file = "django_crispy_forms-1.14.0-py3-none-any.whl", hash = "sha256:bc4d2037f6de602d39c0bc452ac3029d1f5d65e88458872cc4dbc01c3a400604"},
 ]
+django-filter = []
 django-phonenumber-field = []
 django-tinymce = []
 phonenumbers = []

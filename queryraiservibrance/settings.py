@@ -59,7 +59,7 @@ ROOT_URLCONF = 'queryraiservibrance.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['queryraiservibrance/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

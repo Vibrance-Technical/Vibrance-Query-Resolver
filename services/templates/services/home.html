@@ -1,1 +1,9 @@
-<h1>Hey</h1>
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class = "container">
+    <form method = "GET">
+        {{search_form|crispy}}
+    </form>
+</div>
+{% endblock %}
