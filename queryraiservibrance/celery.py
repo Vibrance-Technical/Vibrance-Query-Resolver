@@ -3,7 +3,7 @@ from celery import Celery
 from .settings import INSTALLED_APPS
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vibrancequeryraiser.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'queryraiservibrance.settings')
 
 app = Celery('queryraiser')
 

@@ -1,5 +1,6 @@
 from .forms import *
 from .filters import *
+from .tasks import *
 from django.contrib import messages
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -30,6 +31,7 @@ def create_query(request):
             query = query_form.save(commit=False)
             query.status = "Processing Query"
             query.save()
+            send_reference_mail(query)
             messages.success(request,"Successfully raised a query. You will be notified about the status soon")
             return redirect("home")
         else:
@@ -52,7 +54,7 @@ def approve_query(request,pk,slug):
         query.status = "Resolved"
         query.save()
         messages.success(request,"Resolved Query successfully")
-        # approval_mail(query)
+        approval_mail(query)
         return redirect("home")
     else:
         messages.error(request,"Error Processing Request")
@@ -64,7 +66,7 @@ def reject_query(request,pk,slug):
         query.status = "Rejected"
         query.save()
         messages.success(request,"Rejected Query successfully")
-        # approval_mail(query)
+        rejection_mail(query)
         return redirect("home")
     else:
         messages.error(request,"Error Processing Request")
