@@ -5,7 +5,7 @@ from .settings import INSTALLED_APPS
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'queryraiservibrance.settings')
 
-app = Celery('queryraiser')
+app = Celery('queryraiservibrance')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
