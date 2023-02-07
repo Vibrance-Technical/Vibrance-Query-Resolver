@@ -17,15 +17,7 @@ from django.contrib.messages import constants as messages
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
-#Email Backends
-EMAIL_BACKEND = env.str('EMAIL_BACKEND')
-EMAIL_USE_TLS = True
-EMAIL_USER_SSL = False
-EMAIL_HOST = env.str('EMAIL_HOST')
-EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = env.int('EMAIL_PORT')
-DEFAULT_FROM_EMAIL = 'PR Team VIT Chennai <noreply@queryraiser.com>'
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -35,9 +27,9 @@ DEFAULT_FROM_EMAIL = 'PR Team VIT Chennai <noreply@queryraiser.com>'
 SECRET_KEY = 'django-insecure-f2^5nm^v(rwv$p%-n-5dcdjcn$&k^=_c$n^qo)t3y)7yf&a0n7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_celery_results',
     'django_filters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -185,3 +178,30 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
+#Email Backends
+EMAIL_BACKEND = env.str('EMAIL_BACKEND')
+EMAIL_USE_TLS = True
+EMAIL_USER_SSL = False
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env.int('EMAIL_PORT')
+DEFAULT_FROM_EMAIL = 'Vibrance Technical Team <noreply@queryraiser.com>'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://vibrancequeryraiser.azurewebsites.net'
+]
+# CELERY_CACHE_BACKEND = 'default'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Asia/Kolkata'
+DEFAULT_FILE_STORAGE = 'services.custom_azure.AzureMediaStorage'
+STATICFILES_STORAGE = 'services.custom_azure.AzureStaticStorage'
+STATIC_LOCATION = "staticvibrance"
+MEDIA_LOCATION = "mediavibrance"
+AZURE_ACCOUNT_NAME = env.str("ACCOUNT_NAME")
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
