@@ -10,7 +10,7 @@ class Query(models.Model):
     registration_id = models.CharField(max_length = 200)
     college_name = models.CharField(max_length = 400)
     title = models.CharField(max_length = 30)
-    event_name = models.CharField(max_length = 200)
+    event_name = models.CharField(max_length = 200,null=True)
     description = HTMLField()
     email = models.EmailField(blank = True)
     transaction_id = models.CharField(max_length = 500)
