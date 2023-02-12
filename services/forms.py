@@ -15,4 +15,4 @@ class QueryCreateForm(forms.ModelForm):
     
     class Meta:
         model = Query
-        fields = ["user_name","registration_id","email","college_name","title","description","transaction_id","screenshot"]
+        fields = ["user_name","registration_id","email","college_name","title","event_name","description","transaction_id","screenshot"]
