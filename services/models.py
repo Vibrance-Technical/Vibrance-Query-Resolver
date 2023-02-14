@@ -13,7 +13,7 @@ class Query(models.Model):
     event_name = models.CharField(max_length = 200,null=True)
     description = HTMLField()
     email = models.EmailField(blank = True)
-    transaction_id = models.CharField(max_length = 500)
+    order_id = models.CharField(max_length = 500)
     status = models.CharField(max_length = 100,choices = STATUS_CHOICES,blank = True)
     screenshot = models.ImageField(upload_to = 'references/')
     date_of_creation = models.DateTimeField(auto_now_add = True)
