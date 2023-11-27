@@ -22,6 +22,7 @@ hypercorn = "^0.14.3"
 psycopg2 = "^2.9.5"
 psycopg2-binary = "^2.9.5"
 django-import-export = "^3.0.2"
+pyyaml = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
 
